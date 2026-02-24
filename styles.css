@@ -759,3 +759,46 @@ a:hover{
   border-radius: 999px;
   opacity: .85;
 }
+/* ===============================
+   BALANCED PACIFICO FONT EFFECT
+   =============================== */
+
+/* Apply Pacifico to key sections but balance it out visually */
+.headerTitle,
+.brand,
+.nav p,
+.headerBtn{
+  font-family: var(--scriptFont) !important;
+  text-transform: none !important;
+  letter-spacing: 0.1px !important;  /* Slightly tighter spacing for more balance */
+  font-weight: normal !important;    /* Keep it light, not bold */
+}
+
+/* Adjust header font size slightly smaller for a balanced look */
+.headerTitle{
+  font-size: 17px !important; /* Slightly smaller than before */
+}
+
+/* Apply Pacifico font to Main H1 and Server Information H2 */
+body.home .main h1,
+body.home .serverInfoTitle{
+  font-family: var(--scriptFont) !important;
+  text-transform: none !important;
+  font-size: 22px !important; /* Slightly smaller for readability */
+  letter-spacing: 0.2px !important; /* Balanced spacing for clarity */
+}
+
+/* Soft glow effect behind H1 to maintain tropical vibe */
+body.home .main h1{
+  color: rgba(234,240,255,.98) !important;
+  text-shadow:
+    0 2px 6px rgba(0,0,0,.45),
+    0 6px 22px rgba(247,83,12,.22),  /* orange halo */
+    0 10px 34px rgba(247,177,12,.20),/* gold halo */
+    0 0 18px rgba(247,83,12,.10);    /* subtle warmth */
+}
+
+/* Keep Server Information H2 in white */
+body.home .serverInfoTitle{
+  color: rgba(234,240,255,.96) !important;
+}
