@@ -560,3 +560,26 @@ body{
   background-attachment:fixed;
   background-repeat:no-repeat;
 }
+/* ================================
+   PREMIUM DOC UPGRADE (A + B)
+   White H1 + subtle glow
+   Main content overlay panel
+   ================================ */
+
+/* H1: White + subtle premium glow */
+h1{
+  color: var(--text) !important;
+  text-shadow:
+    0 2px 18px rgba(12, 67, 247, .18),
+    0 1px 2px rgba(0, 0, 0, .55);
+}
+
+/* Main content overlay panel */
+.main{
+  background: rgba(7, 11, 22, .65);
+  border: 1px solid rgba(234, 240, 255, .10);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 50px rgba(0,0,0,.55);
+  padding: 32px 36px; /* inset padding for premium spacing */
+  backdrop-filter: blur(2px); /* VERY subtle depth */
+}
