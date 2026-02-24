@@ -545,3 +545,7 @@ pre{
 code{
   background:rgba(12,67,247,.10) !important;
 }
+/* Hide mobile menu button (desktop + mobile) */
+#menuBtn{
+  display:none !important;
+}
