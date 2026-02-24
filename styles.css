@@ -583,3 +583,37 @@ h1{
   padding: 32px 36px; /* inset padding for premium spacing */
   backdrop-filter: blur(2px); /* VERY subtle depth */
 }
+/* =====================================
+   GLASS UPGRADE + REMOVE BLUE TEXT
+   ===================================== */
+
+/* --- Remove blue typography --- */
+h1,
+h2,
+h3{
+  color: var(--text) !important;
+}
+
+a{
+  color: var(--text) !important;
+}
+
+a:hover{
+  color: var(--gold) !important;
+}
+
+/* --- Premium glass content panel --- */
+.main{
+  background: rgba(255, 255, 255, 0.06); /* translucent white */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius);
+  box-shadow: 0 30px 60px rgba(0,0,0,.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 32px 36px;
+}
+
+/* Make paragraph text slightly brighter for contrast */
+p, li{
+  color: rgba(234,240,255,.95) !important;
+}
