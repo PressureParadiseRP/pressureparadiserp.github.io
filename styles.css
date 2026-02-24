@@ -617,3 +617,34 @@ a:hover{
 p, li{
   color: rgba(234,240,255,.95) !important;
 }
+
+/* Site-wide search dropdown */
+.search{ position:relative; }
+
+.searchResults{
+  margin-top:10px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 45px rgba(0,0,0,.45);
+  overflow:hidden;
+}
+
+.searchResultItem{
+  display:block;
+  padding:10px 12px;
+  text-decoration:none;
+  border-top:1px solid rgba(255,255,255,.10);
+  color: var(--text);
+}
+
+.searchResultItem:first-child{ border-top:none; }
+
+.searchResultItem:hover{
+  background: rgba(12,67,247,.12);
+}
+
+.searchResultTitle{
+  font-weight:850;
+}
