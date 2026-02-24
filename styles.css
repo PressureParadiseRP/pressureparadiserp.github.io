@@ -404,101 +404,144 @@ tr:last-child td{ border-bottom:none; }
     pointer-events:auto;
   }
 }
-/* =======================
-   BRAND COLOR COHESION PATCH
-   (No layout changes. Safe override.)
+/*/* =======================
+   4-COLOR BRAND PATCH (STRONGER)
+   Keeps EXACT layout. Colors now show BLUE + ORANGE + GOLD + GREEN clearly.
+   Paste at end of styles.css
    ======================= */
 
+/* Keep your exact brand hex */
 :root{
+  --orange:#F7530C;
+  --green:#0CF73B;
+  --blue:#0C43F7;
+  --gold:#F7B10C;
+
+  /* Surfaces are still readable, but no longer "just blue" */
   --surface:rgba(12,67,247,.10);
   --surface2:rgba(12,67,247,.16);
-  --border:rgba(247,177,12,.22);
+  --borderGold:rgba(247,177,12,.30);
+  --borderBlue:rgba(12,67,247,.35);
+  --ringOrange:rgba(247,83,12,.18);
+  --ringGold:rgba(247,177,12,.16);
 }
 
-/* Header */
+/* ===== Header: BLUE→ORANGE identity + GOLD structure ===== */
 .globalHeader{
-  background:linear-gradient(180deg, var(--surface2), var(--surface)) !important;
-  border-bottom:1px solid var(--border) !important;
+  background:
+    linear-gradient(90deg, rgba(12,67,247,.22), rgba(247,83,12,.18)),
+    linear-gradient(180deg, rgba(12,67,247,.16), rgba(12,67,247,.10)) !important;
+  border-bottom:1px solid var(--borderGold) !important;
 }
 
 .globalHeader::after{
-  background:linear-gradient(90deg, var(--blue), var(--orange)) !important;
-  opacity:.40 !important;
+  content:"";
+  display:block;
+  height:3px;
+  background:linear-gradient(90deg, var(--blue), var(--gold), var(--orange)) !important;
+  opacity:.75 !important;
 }
 
-/* Sidebar */
-.sidebar{
-  background:linear-gradient(180deg, var(--surface2), var(--surface)) !important;
-  border-right:1px solid var(--border) !important;
-}
-
-/* Buttons */
+/* Header buttons: BLUE surface + GOLD border + ORANGE hover ring */
 .headerBtn{
   background:var(--surface) !important;
-  border-color:var(--border) !important;
+  border-color:var(--borderGold) !important;
+}
+.headerBtn:hover{
+  border-color:rgba(247,83,12,.45) !important;
+  box-shadow:0 0 0 6px var(--ringOrange), 0 10px 18px rgba(0,0,0,.30) !important;
 }
 
-.search input{
+/* Status pill base stays neutral; state classes already show green/gold/orange */
+.headerPill{
   background:var(--surface) !important;
-  border-color:var(--border) !important;
+  border-color:var(--borderGold) !important;
 }
 
+/* ===== Sidebar: BLUE glass + GOLD rails so it reads “tropical” not monochrome ===== */
+.sidebar{
+  background:
+    linear-gradient(180deg, rgba(12,67,247,.18), rgba(12,67,247,.08)) !important;
+  border-right:2px solid var(--borderGold) !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.35) !important;
+}
+
+/* Optional: a thin gold top accent inside sidebar (still no layout change) */
+.sidebar::before{
+  content:"";
+  display:block;
+  height:3px;
+  margin:-16px -16px 14px; /* matches existing padding */
+  background:linear-gradient(90deg, var(--gold), var(--orange)) !important;
+  opacity:.80;
+}
+
+/* Search + menu button: BLUE surface + GOLD border */
+.search input,
 #menuBtn{
   background:var(--surface) !important;
-  border-color:var(--border) !important;
+  border-color:var(--borderGold) !important;
+}
+.search input:focus{
+  border-color:var(--borderBlue) !important;
+  box-shadow:0 0 0 4px rgba(12,67,247,.20) !important;
 }
 
-/* Nav */
+/* ===== Nav: BLUE hover, ORANGE active, GOLD glow ===== */
 .nav a:hover{
-  background:rgba(12,67,247,.14) !important;
-  box-shadow:0 0 0 6px rgba(12,67,247,.12) !important;
+  background:rgba(12,67,247,.16) !important;
+  box-shadow:0 0 0 6px rgba(12,67,247,.14) !important;
+  color:var(--text) !important;
 }
 
 .nav a.active{
-  background:rgba(12,67,247,.18) !important;
-  box-shadow:0 0 0 6px rgba(247,177,12,.12) !important;
+  background:rgba(247,177,12,.10) !important;  /* GOLD-tinted active bg */
+  box-shadow:0 0 0 6px rgba(247,177,12,.14) !important;
+  color:var(--text) !important;
+  font-weight:850 !important;
 }
-
 .nav a.active::before{
   background:var(--orange) !important;
-  box-shadow:0 0 14px rgba(247,177,12,.18) !important;
+  box-shadow:0 0 14px rgba(247,83,12,.22) !important;
 }
 
-/* Headings */
-h2::after{
-  background:var(--orange) !important;
+/* Group titles a bit more “gold” so it’s not all blue */
+.nav p{
+  color:rgba(247,177,12,.70) !important;
 }
 
-/* Details */
+/* ===== Headings: Blue H1, Orange underline, Gold section rhythm ===== */
+h1{ color:var(--blue) !important; }
+h2::after{ background:var(--orange) !important; }
+
+/* Links: Blue base, Gold hover */
+a{ color:var(--blue) !important; }
+a:hover{ color:var(--gold) !important; }
+
+/* ===== Details + Tables: BLUE surfaces + GOLD borders ===== */
 details{
   background:var(--surface) !important;
-  border-color:var(--border) !important;
+  border-color:rgba(247,177,12,.24) !important;
+}
+details[open]{
+  border-color:rgba(247,83,12,.35) !important; /* ORANGE emphasis when open */
 }
 
-/* Tables */
 table{
   background:var(--surface) !important;
-  border-color:var(--border) !important;
+  border-color:rgba(247,177,12,.28) !important;
 }
-
 th, td{
   border-bottom-color:rgba(247,177,12,.14) !important;
 }
-
 tr:nth-child(even) td{
   background:rgba(12,67,247,.08) !important;
 }
 
-/* Code blocks */
+/* Code blocks: keep dark, but GOLD border ties it in */
 pre{
-  border-color:var(--border) !important;
+  border-color:rgba(247,177,12,.22) !important;
 }
-
 code{
   background:rgba(12,67,247,.10) !important;
-}
-
-/* Links */
-a:hover{
-  color:var(--gold) !important;
 }
