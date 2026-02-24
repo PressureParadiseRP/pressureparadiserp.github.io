@@ -3,17 +3,16 @@
   // ONE-PLACE CONFIG (EDIT THIS)
   // ==============================
   const SITE = {
-    name: "Pressure in Paradise RP",
-    emoji: "🌴",
-    tagline: "Florida Beach • Semi-serious RP",
-    statusText: "Docs Live", // change anytime (ex: "Server: Online", "Maintenance", etc.)
+  name: "Pressure in Paradise RP",
+  emoji: "🌴",
+  tagline: "Florida Beach • Semi-serious RP",
+  statusText: "Server: Online 🟢",  // change anytime
 
-    // Put your real links here
-    discordUrl: "https://discord.gg/YOUR_INVITE",
-    connectUrl: "https://cfx.re/join/YOURCODE", // optional / recommended
-    rulesUrl: "/server-bible/"
-  };
-
+  discordUrl: "https://discord.gg/4ZJY3d5MAh",
+  connectUrl: "https://cfx.re/join/3m8ymr",
+  rulesUrl: "/server-bible/"
+};
+  
   // ==============================
   // GLOBAL HEADER (auto-injected)
   // ==============================
