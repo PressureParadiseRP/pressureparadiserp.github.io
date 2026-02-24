@@ -4,9 +4,11 @@
   // ==============================
   const SITE = {
   name: "Pressure in Paradise RP",
-  emoji: "🌴",
+  emoji: 🌴🌊☀️"",
   tagline: "Florida Beach • Semi-serious RP",
-  statusText: "Server: Online 🟢",  // change anytime
+    
+statusMode: "maintenance",         // online | maintenance | offline | custom
+statusText: "Docs Live",      // used only when statusMode = "custom"
 
   discordUrl: "https://discord.gg/4ZJY3d5MAh",
   connectUrl: "https://cfx.re/join/3m8ymr",
