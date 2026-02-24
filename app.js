@@ -13,7 +13,7 @@
 
     discordUrl: "https://discord.gg/4ZJY3d5MAh",
     connectUrl: "https://cfx.re/join/3m8ymr",
-    rulesUrl: "/server-bible/"
+    tebexUrl: "https://www.youtube.com/watch?v=xvFZjo5PgG0/"
   };
 
   // ==============================
