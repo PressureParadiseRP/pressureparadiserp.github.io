@@ -549,3 +549,14 @@ code{
 #menuBtn{
   display:none !important;
 }
+
+/* Global beach background for all pages */
+body{
+  background:
+    linear-gradient(rgba(7,11,22,.88), rgba(7,11,22,.92)),
+    url("/assets/beach-bg.png");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+}
