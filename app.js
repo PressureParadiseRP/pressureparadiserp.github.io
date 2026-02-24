@@ -8,8 +8,18 @@
     tagline: "Florida Based • Semi-serious RP",
 
     // online | maintenance | offline | custom
-    statusMode: "maintenance",
-    statusText: "Docs Live", // used only when statusMode = "custom"
+let statusMode = "maintenance"; // Change to "online", "offline", or "maintenance" depending on server status
+
+let statusText = ""; // This will store the emoji and text for the status
+if (statusMode === "online") {
+  statusText = "Server Status: 🟢";  // Emoji for online
+} else if (statusMode === "offline") {
+  statusText = "Server Status: 🔴";  // Emoji for offline
+} else if (statusMode === "maintenance") {
+  statusText = "Server Status: 🛠️";  // Emoji for maintenance
+} else {
+  statusText = "Server Status: Custom";  // Default custom message (optional)
+}
 
     discordUrl: "https://discord.gg/4ZJY3d5MAh",
     connectUrl: "https://cfx.re/join/3m8ymr",
