@@ -811,3 +811,76 @@ body.home .main h1{
 body.home .serverInfoTitle{
   color: rgba(234,240,255,.96) !important;
 }
+/* Import Pacifico font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Brand colors (exact hex) */
+:root{
+  --orange: #F7530C;
+  --green: #0CF73B;
+  --blue: #0C43F7;
+  --gold: #F7B10C;
+
+  --bg: #070B16;
+  --surface: #0B1224;
+  --surface2: #0E1730;
+  --text: #EAF0FF;
+  --muted: rgba(234,240,255,.72);
+  --muted2: rgba(234,240,255,.58);
+  --border: rgba(234,240,255,.10);
+
+  --radius: 12px;
+  --shadow: 0 10px 28px rgba(0,0,0,.45);
+  --shadowSoft: 0 8px 16px rgba(0,0,0,.35);
+
+  --trans: 180ms ease;
+
+  /* Add Pacifico font here */
+  --scriptFont: 'Pacifico', cursive;
+}
+
+/* Apply Pacifico font to the key sections */
+.headerTitle,
+.brand,
+.nav p,
+.headerBtn {
+  font-family: var(--scriptFont) !important;
+  text-transform: none !important;
+  font-weight: normal !important; /* Keep light, not bold */
+}
+
+/* Apply Pacifico font to Main H1 and Server Information H2 */
+body.home .main h1,
+body.home .serverInfoTitle {
+  font-family: var(--scriptFont) !important;
+  font-size: 22px !important;
+  letter-spacing: 0.2px !important;
+}
+
+/* Main H1 styling requirements:
+   - white
+   - warm sunset glow (orange + gold)
+   - subtle, layered aura (not cyberpunk) */
+body.home .main h1 {
+  color: rgba(234,240,255,.98) !important;
+  text-shadow:
+    0 2px 6px rgba(0,0,0,.45),
+    0 6px 22px rgba(247,83,12,.22),  /* orange glow */
+    0 10px 34px rgba(247,177,12,.20),/* gold glow */
+    0 0 18px rgba(247,83,12,.10);    /* soft warmth */
+}
+
+/* Server Information H2 stays white; divider is already gold via your existing rule */
+body.home .serverInfoTitle {
+  color: rgba(234,240,255,.96) !important;
+}
+
+/* Make sure the Server Information content has enough space around it */
+.serverInfoCard {
+  background: rgba(255, 255, 255, 0.035) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(18px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(130%) !important;
+  padding: 18px 20px !important;
+  color: rgba(234,240,255,0.96) !important;
+}
