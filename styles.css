@@ -1,7 +1,8 @@
 /* Import Pacifico font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Brand colors (exact hex) */
 :root{
-  /* Brand colors (exact hex) */
   --orange:#F7530C; /* CTA, active states */
   --green:#0CF73B;  /* online/success */
   --blue:#0C43F7;   /* links, headings, focus */
@@ -22,7 +23,9 @@
 
   --trans:180ms ease;
 }
-
+/* Add Pacifico font here */
+  --scriptFont: 'Pacifico', cursive; /* This is the new line */
+}
 /* Base */
 *{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
@@ -765,20 +768,20 @@ a:hover{
    BALANCED PACIFICO FONT EFFECT
    =============================== */
 
-/* Apply Pacifico to key sections but balance it out visually */
+/* Apply Pacifico to key sections but balance it visually */
 .headerTitle,
 .brand,
 .nav p,
 .headerBtn{
   font-family: var(--scriptFont) !important;
   text-transform: none !important;
-  letter-spacing: 0.1px !important;  /* Slightly tighter spacing for more balance */
-  font-weight: normal !important;    /* Keep it light, not bold */
+  letter-spacing: 0.1px !important; /* Slightly tighter spacing for a balanced look */
+  font-weight: normal !important;   /* Keep it light, not bold */
 }
 
 /* Adjust header font size slightly smaller for a balanced look */
 .headerTitle{
-  font-size: 17px !important; /* Slightly smaller than before */
+  font-size: 17px !important;  /* Slightly smaller than before */
 }
 
 /* Apply Pacifico font to Main H1 and Server Information H2 */
@@ -786,13 +789,13 @@ body.home .main h1,
 body.home .serverInfoTitle{
   font-family: var(--scriptFont) !important;
   text-transform: none !important;
-  font-size: 22px !important; /* Slightly smaller for readability */
+  font-size: 22px !important;  /* Slightly larger for readability */
   letter-spacing: 0.2px !important; /* Balanced spacing for clarity */
 }
 
 /* Soft glow effect behind H1 to maintain tropical vibe */
 body.home .main h1{
-  color: rgba(234,240,255,.98) !important;
+  color: rgb(234,240,255,.98) !important;
   text-shadow:
     0 2px 6px rgba(0,0,0,.45),
     0 6px 22px rgba(247,83,12,.22),  /* orange halo */
