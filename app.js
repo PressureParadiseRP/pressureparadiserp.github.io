@@ -9,7 +9,7 @@
     tagline: "Florida Based • Semi-serious RP",
 
     // online | maintenance | offline | custom
-    statusMode: "online", // Change to "online", "offline", or "maintenance" depending on server status
+    statusMode = "online", // Change to "online", "offline", or "maintenance" depending on server status
 
     let statusText = ""; // This will store the emoji and text for the status
 
@@ -29,6 +29,9 @@
     connectUrl: "https://cfx.re/join/3my9mr",
     tebexUrl: "https://www.youtube.com/watch?v=xvFzjo5PzgG0"
   };
+
+  // Continue with the rest of the code...
+})();
 
   // ==============================
   // HOME/SUBPAGE CLASSES (CSS-only design hooks)
