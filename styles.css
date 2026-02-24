@@ -890,3 +890,12 @@ body.home .serverInfoTitle {
   letter-spacing: .1em !important;  /* Slightly increase letter spacing for readability */
   font-weight: bold !important;  /* Make section titles more prominent */
 }
+/* Add line under sidebar section headers */
+.nav p {
+  font-size: 16px !important;
+  letter-spacing: .1em !important;
+  font-weight: bold !important;
+  padding-bottom: 8px; /* Add space for the line */
+  border-bottom: 2px solid rgba(247,177,12,.60); /* Thin gold line */
+  margin-bottom: 10px; /* Add space between the line and the next item */
+}
