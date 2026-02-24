@@ -216,43 +216,164 @@
     }
   });
 
-  function filterPage(query){
-    const q = (query||"").toLowerCase().trim();
-    const items = document.querySelectorAll("[data-search-item]");
-    const dropdowns = document.querySelectorAll("details");
+  // ==============================
+// PAGE FILTER (existing behavior kept)
+// ==============================
+function filterPage(query){
+  const q = (query||"").toLowerCase().trim();
+  const items = document.querySelectorAll("[data-search-item]");
+  const dropdowns = document.querySelectorAll("details");
 
-    if(!q){
-      items.forEach(el => el.style.display = "");
-      dropdowns.forEach(d => d.open = false);
-      return;
+  if(!q){
+    items.forEach(el => el.style.display = "");
+    dropdowns.forEach(d => d.open = false);
+    return;
+  }
+
+  items.forEach(el => {
+    const text = (el.innerText||"").toLowerCase();
+    el.style.display = text.includes(q) ? "" : "none";
+  });
+
+  dropdowns.forEach(d => {
+    const t = (d.innerText||"").toLowerCase();
+    if(t.includes(q)) d.open = true;
+  });
+}
+
+// ==============================
+// SITE-WIDE SEARCH (NEW)
+// ==============================
+
+const SITE_PAGES = [
+  { title: "Home", path: "/" },
+  { title: "Server Bible", path: "/server-bible/" },
+  { title: "Faction ROE", path: "/faction-roe/" },
+  { title: "Families ROE", path: "/families-roe/" },
+  { title: "LEO", path: "/leo/" },
+  { title: "EMS", path: "/ems/" }
+];
+
+const siteCache = new Map();
+let siteLoading = false;
+
+function ensureSearchBox(){
+  let box = document.getElementById("searchResults");
+  if(box) return box;
+
+  box = document.createElement("div");
+  box.id = "searchResults";
+  box.className = "searchResults";
+  box.style.display = "none";
+
+  const wrap = searchInput.closest(".search");
+  wrap.appendChild(box);
+
+  document.addEventListener("click",(e)=>{
+    if(e.target === searchInput || box.contains(e.target)) return;
+    box.style.display = "none";
+  });
+
+  return box;
+}
+
+async function fetchPage(path){
+  if(siteCache.has(path)) return siteCache.get(path);
+
+  const res = await fetch(path);
+  const html = await res.text();
+  const doc = new DOMParser().parseFromString(html,"text/html");
+
+  const nodes = doc.querySelectorAll("[data-search-item]");
+  const text = Array.from(nodes).map(n=>n.textContent.trim()).join(" ");
+
+  const record = { path, text };
+  siteCache.set(path, record);
+  return record;
+}
+
+async function buildCache(){
+  if(siteLoading) return;
+  siteLoading = true;
+  await Promise.all(SITE_PAGES.map(p=>fetchPage(p.path)));
+  siteLoading = false;
+}
+
+async function searchSite(query){
+  const q = query.toLowerCase().trim();
+  if(q.length < 2) return [];
+
+  await buildCache();
+
+  const results = [];
+  for(const p of SITE_PAGES){
+    const rec = siteCache.get(p.path);
+    if(rec && rec.text.toLowerCase().includes(q)){
+      results.push(p);
     }
+  }
+  return results;
+}
 
-    items.forEach(el => {
-      const text = (el.innerText||"").toLowerCase();
-      el.style.display = text.includes(q) ? "" : "none";
-    });
-
-    dropdowns.forEach(d => {
-      const t = (d.innerText||"").toLowerCase();
-      if(t.includes(q)) d.open = true;
-    });
+function renderResults(results, query){
+  const box = ensureSearchBox();
+  if(!results.length){
+    box.innerHTML = `<div class="searchResultMeta">No results found</div>`;
+    box.style.display = "block";
+    return;
   }
 
-  if(searchInput){
-    searchInput.addEventListener("input", (e)=> filterPage(e.target.value));
+  box.innerHTML = results.map(r=>`
+    <a class="searchResultItem" href="${r.path}?q=${encodeURIComponent(query)}">
+      <div class="searchResultTitle">${r.title}</div>
+    </a>
+  `).join("");
 
-    document.addEventListener("keydown",(e)=>{
-      if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==="k"){
-        e.preventDefault();
-        searchInput.focus();
-      }
-      if(e.key==="Escape"){
-        searchInput.value="";
-        filterPage("");
-        if(sidebar) sidebar.classList.remove("open");
-      }
-    });
+  box.style.display = "block";
+}
+
+function applyIncomingQuery(){
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get("q");
+  if(q && searchInput){
+    searchInput.value = q;
+    filterPage(q);
   }
+}
+
+if(searchInput){
+  ensureSearchBox();
+
+  searchInput.addEventListener("input", async (e)=>{
+    const val = e.target.value;
+    filterPage(val);
+    const results = await searchSite(val);
+    renderResults(results, val);
+  });
+
+  searchInput.addEventListener("keydown", async (e)=>{
+    if(e.key === "Enter"){
+      const results = await searchSite(searchInput.value);
+      if(results.length){
+        window.location.href = `${results[0].path}?q=${encodeURIComponent(searchInput.value)}`;
+      }
+    }
+  });
+
+  document.addEventListener("keydown",(e)=>{
+    if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==="k"){
+      e.preventDefault();
+      searchInput.focus();
+    }
+    if(e.key==="Escape"){
+      searchInput.value="";
+      filterPage("");
+      sidebar?.classList.remove("open");
+    }
+  });
+
+  applyIncomingQuery();
+}
 
   // ==============================
   // INIT
