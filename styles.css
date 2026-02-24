@@ -404,3 +404,101 @@ tr:last-child td{ border-bottom:none; }
     pointer-events:auto;
   }
 }
+/* =======================
+   BRAND COLOR COHESION PATCH
+   (No layout changes. Safe override.)
+   ======================= */
+
+:root{
+  --surface:rgba(12,67,247,.10);
+  --surface2:rgba(12,67,247,.16);
+  --border:rgba(247,177,12,.22);
+}
+
+/* Header */
+.globalHeader{
+  background:linear-gradient(180deg, var(--surface2), var(--surface)) !important;
+  border-bottom:1px solid var(--border) !important;
+}
+
+.globalHeader::after{
+  background:linear-gradient(90deg, var(--blue), var(--orange)) !important;
+  opacity:.40 !important;
+}
+
+/* Sidebar */
+.sidebar{
+  background:linear-gradient(180deg, var(--surface2), var(--surface)) !important;
+  border-right:1px solid var(--border) !important;
+}
+
+/* Buttons */
+.headerBtn{
+  background:var(--surface) !important;
+  border-color:var(--border) !important;
+}
+
+.search input{
+  background:var(--surface) !important;
+  border-color:var(--border) !important;
+}
+
+#menuBtn{
+  background:var(--surface) !important;
+  border-color:var(--border) !important;
+}
+
+/* Nav */
+.nav a:hover{
+  background:rgba(12,67,247,.14) !important;
+  box-shadow:0 0 0 6px rgba(12,67,247,.12) !important;
+}
+
+.nav a.active{
+  background:rgba(12,67,247,.18) !important;
+  box-shadow:0 0 0 6px rgba(247,177,12,.12) !important;
+}
+
+.nav a.active::before{
+  background:var(--orange) !important;
+  box-shadow:0 0 14px rgba(247,177,12,.18) !important;
+}
+
+/* Headings */
+h2::after{
+  background:var(--orange) !important;
+}
+
+/* Details */
+details{
+  background:var(--surface) !important;
+  border-color:var(--border) !important;
+}
+
+/* Tables */
+table{
+  background:var(--surface) !important;
+  border-color:var(--border) !important;
+}
+
+th, td{
+  border-bottom-color:rgba(247,177,12,.14) !important;
+}
+
+tr:nth-child(even) td{
+  background:rgba(12,67,247,.08) !important;
+}
+
+/* Code blocks */
+pre{
+  border-color:var(--border) !important;
+}
+
+code{
+  background:rgba(12,67,247,.10) !important;
+}
+
+/* Links */
+a:hover{
+  color:var(--gold) !important;
+}
