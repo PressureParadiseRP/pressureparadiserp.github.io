@@ -9,7 +9,7 @@
     tagline: "Florida Based • Semi-serious RP",
 
     // online | maintenance | offline | custom
-    statusMode = "online", // Change to "online", "offline", or "maintenance" depending on server status
+    statusMode: "online", // Change to "online", "offline", or "maintenance" depending on server status
 
     let statusText = ""; // This will store the emoji and text for the status
 
