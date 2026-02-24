@@ -884,3 +884,9 @@ body.home .serverInfoTitle {
   padding: 18px 20px !important;
   color: rgba(234,240,255,0.96) !important;
 }
+/* Increase font size for sidebar section headers */
+.nav p {
+  font-size: 16px !important;  /* Increased font size for better visibility */
+  letter-spacing: .1em !important;  /* Slightly increase letter spacing for readability */
+  font-weight: bold !important;  /* Make section titles more prominent */
+}
