@@ -899,3 +899,9 @@ body.home .serverInfoTitle {
   border-bottom: 2px solid rgba(247,177,12,.60); /* Thin gold line */
   margin-bottom: 10px; /* Add space between the line and the next item */
 }
+body.home h1 {
+  font-family: var(--scriptFont) !important;
+  font-size: 32px !important; /* Adjusted font size for better readability */
+  letter-spacing: 0.2px !important;
+  text-transform: none !important; /* Ensure it doesn’t turn into all caps */
+}
