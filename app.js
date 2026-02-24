@@ -5,7 +5,7 @@
   const SITE = {
     name: "Pressure in Paradise RP",
     emoji: "🌴🌊☀️",
-    tagline: "Florida Beach • Semi-serious RP",
+    tagline: "Florida Based • Semi-serious RP",
 
     // online | maintenance | offline | custom
     statusMode: "maintenance",
