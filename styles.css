@@ -850,11 +850,11 @@ body.home .serverInfoTitle{
 }
 
 /* Apply Pacifico font to Main H1 and Server Information H2 */
-body.home .main h1,
-body.home .serverInfoTitle {
+body.home h1 {
   font-family: var(--scriptFont) !important;
-  font-size: 22px !important;
+  font-size: 32px !important; /* Adjusted font size for better readability */
   letter-spacing: 0.2px !important;
+  text-transform: none !important; /* Ensure it doesn’t turn into all caps */
 }
 
 /* Main H1 styling requirements:
