@@ -62,7 +62,7 @@
           <span class="headerPill headerPill--${st.mode}">${st.text}</span>
           ${SITE.discordUrl ? `<a class="headerBtn" href="${SITE.discordUrl}" target="_blank" rel="noopener">Discord</a>` : ``}
           ${SITE.connectUrl ? `<a class="headerBtn" href="${SITE.connectUrl}" target="_blank" rel="noopener">Connect</a>` : ``}
-          ${SITE.rulesUrl ? `<a class="headerBtn" href="${SITE.rulesUrl}">Rules</a>` : ``}
+          ${SITE.tebexUrl ? `<a class="headerBtn" href="${SITE.tebexUrl}" target="_blank" rel="noopener">Tebex</a>` : ``}
         </div>
       </div>
     `;
