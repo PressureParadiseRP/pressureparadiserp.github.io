@@ -13,147 +13,7 @@
   };
 
   // ==============================
-  // SEARCH FUNCTIONALITY (MODIFIED)
-  // ==============================
-  const SITE_PAGES = [
-    { title: "Home", path: "/" },
-    { title: "Server Bible", path: "/server-bible/" },
-    { title: "Faction ROE", path: "/faction-roe/" },
-    { title: "Families ROE", path: "/families-roe/" },
-    { title: "LEO", path: "/leo/" },
-    { title: "EMS", path: "/ems/" }
-  ];
-
-  const siteCache = new Map();
-  let siteLoading = false;
-
-  function ensureSearchBox(){
-    let box = document.getElementById("searchResults");
-    if(box) return box;
-
-    box = document.createElement("div");
-    box.id = "searchResults";
-    box.className = "searchResults";
-    box.style.display = "none";
-
-    const wrap = document.querySelector(".search");
-    wrap.appendChild(box);
-
-    document.addEventListener("click", (e) => {
-      if(e.target === searchInput || box.contains(e.target)) return;
-      box.style.display = "none";
-    });
-
-    return box;
-  }
-
-  async function fetchPage(path){
-    if(siteCache.has(path)) return siteCache.get(path);
-
-    const res = await fetch(path);
-    const html = await res.text();
-    const doc = new DOMParser().parseFromString(html, "text/html");
-
-    const nodes = doc.querySelectorAll("[data-search-item]");
-    const text = Array.from(nodes).map(n => n.textContent.trim()).join(" ");
-
-    const record = { path, text };
-    siteCache.set(path, record);
-    return record;
-  }
-
-  async function buildCache(){
-    if(siteLoading) return;
-    siteLoading = true;
-    await Promise.all(SITE_PAGES.map(p => fetchPage(p.path)));
-    siteLoading = false;
-  }
-
-  async function searchSite(query, category){
-    const q = query.toLowerCase().trim();
-    if(q.length < 2) return [];
-
-    await buildCache();
-
-    const results = [];
-    for(const p of SITE_PAGES){
-      if(category && !p.title.toLowerCase().includes(category.toLowerCase())) continue;
-      const rec = siteCache.get(p.path);
-      if(rec && rec.text.toLowerCase().includes(q)){
-        results.push(p);
-      }
-    }
-    return results;
-  }
-
-  function renderResults(results, query){
-    const box = ensureSearchBox();
-    if(!results.length){
-      box.innerHTML = `<div class="searchResultMeta">No results found</div>`;
-      box.style.display = "block";
-      return;
-    }
-
-    box.innerHTML = results.map(r => `
-      <a class="searchResultItem" href="${r.path}?q=${encodeURIComponent(query)}">
-        <div class="searchResultTitle">${r.title}</div>
-      </a>
-    `).join("");
-
-    box.style.display = "block";
-  }
-
-  function applyIncomingQuery(){
-    const params = new URLSearchParams(window.location.search);
-    const q = params.get("q");
-    if(q && searchInput){
-      searchInput.value = q;
-      filterPage(q);
-    }
-  }
-
-  if(searchInput){
-    ensureSearchBox();
-
-    searchInput.addEventListener("input", async (e) => {
-      const val = e.target.value;
-      filterPage(val);
-      const results = await searchSite(val, categorySelect.value);
-      renderResults(results, val);
-    });
-
-    const categorySelect = document.getElementById("categoryFilter");
-    categorySelect.addEventListener("change", async () => {
-      const results = await searchSite(searchInput.value, categorySelect.value);
-      renderResults(results, searchInput.value);
-    });
-
-    document.addEventListener("keydown", async (e) => {
-      if(e.key === "Enter"){
-        const results = await searchSite(searchInput.value, categorySelect.value);
-        if(results.length){
-          window.location.href = `${results[0].path}?q=${encodeURIComponent(searchInput.value)}`;
-        }
-      }
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k"){
-        e.preventDefault();
-        searchInput.focus();
-      }
-      if(e.key === "Escape"){
-        searchInput.value = "";
-        filterPage("");
-        sidebar?.classList.remove("open");
-      }
-    });
-
-    applyIncomingQuery();
-  }
-
-  // ==============================
-  // HEADER INJECTION (Unchanged)
+  // GLOBAL HEADER (auto-injected)
   // ==============================
   function injectHeader(){
     if (document.querySelector(".globalHeader")) return;  // Prevent multiple injections
@@ -173,14 +33,13 @@
         </div>
       </div>
     `;
-    document.body.prepend(header);
+    document.body.prepend(header);  // Adds the header to the top of the body
   }
 
   // ==============================
   // INIT
   // ==============================
-  setPageClasses();
-  injectHeader();
+  injectHeader();  // Ensure header is injected
   syncBrand();
   enableTocIfPresent();
 })();
