@@ -7,6 +7,10 @@
     name: "Pressure in Paradise RP",
     emoji: "🌴🏝️🌞",  // Change emoji if needed
     tagline: "Florida Based • Semi-serious RP",
+    discordUrl: "https://discord.gg/ScHkw3YK4M",  // Add actual Discord URL here
+    connectUrl: "YOUR_CONNECT_URL",  // Add actual Connect URL here
+    tebexUrl: "YOUR_TEBEX_URL"  // Add actual Tebex URL here
+  };
 
   // ==============================
   // GLOBAL HEADER (auto-injected)
@@ -23,7 +27,6 @@
           <div class="headerSub">${SITE.tagline}</div>
         </div>
         <div class="headerRight">
-          <span class="headerPill headerPill--${st.mode}">${st.text}</span>
           ${SITE.discordUrl ? `<a class="headerBtn" href="${SITE.discordUrl}" target="_blank" rel="noopener">Discord</a>` : ``}
           ${SITE.connectUrl ? `<a class="headerBtn" href="${SITE.connectUrl}" target="_blank" rel="noopener">Connect</a>` : ``}
           ${SITE.tebexUrl ? `<a class="headerBtn" href="${SITE.tebexUrl}" target="_blank" rel="noopener">Tebex</a>` : ``}
