@@ -156,7 +156,7 @@
   // HEADER INJECTION (Unchanged)
   // ==============================
   function injectHeader(){
-    if (document.querySelector(".globalHeader")) return;
+    if (document.querySelector(".globalHeader")) return;  // Prevent multiple injections
 
     const header = document.createElement("header");
     header.className = "globalHeader";
