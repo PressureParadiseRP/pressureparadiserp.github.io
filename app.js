@@ -39,7 +39,6 @@
   // ==============================
   // INIT
   // ==============================
-  setPageClasses();
   injectHeader();  // Ensure header is injected
   syncBrand();
   enableTocIfPresent();
