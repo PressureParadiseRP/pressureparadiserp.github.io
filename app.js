@@ -14,8 +14,6 @@
   function injectHeader(){
     if (document.querySelector(".globalHeader")) return;  // Prevent multiple injections
 
-    const st = { mode: SITE.statusMode, text: statusText };
-
     const header = document.createElement("header");
     header.className = "globalHeader";
     header.innerHTML = `
