@@ -7,7 +7,7 @@
     name: "Pressure in Paradise RP",
     emoji: "🌴🏝️🌞",  // Change emoji if needed
     tagline: "Florida Based • Semi-serious RP",
-    discordUrl: "https://discord.gg/ScHkw3YK4M",  // Add actual Discord URL here
+    discordUrl: "YOUR_DISCORD_URL",  // Add actual Discord URL here
     connectUrl: "YOUR_CONNECT_URL",  // Add actual Connect URL here
     tebexUrl: "YOUR_TEBEX_URL"  // Add actual Tebex URL here
   };
